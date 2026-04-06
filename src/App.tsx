@@ -2,38 +2,68 @@ import { useEffect, useRef, useState } from 'react'
 import { ArrowUpRight } from 'lucide-react'
 import './App.css'
 
+const VENTURES = [
+  {
+    num: '01',
+    name: 'Reputation Built',
+    desc: 'Websites & AI for local businesses — plumbers, roofers, landscapers, and every trade doing great work',
+    url: 'https://reputationbuilt.vercel.app',
+  },
+  {
+    num: '02',
+    name: 'Steady Hand Practice',
+    desc: 'Websites & AI for healthcare — physicians, dentists, PTs, and every practice that earns patient trust',
+    url: 'https://steadyhandpractice.vercel.app',
+  },
+]
+
 function App() {
   const [curtainOpen, setCurtainOpen] = useState(false)
+  const [activeVenture, setActiveVenture] = useState(-1)
   const sectionsRef = useRef<(HTMLDivElement | null)[]>([])
+  const ventureRefs = useRef<(HTMLElement | null)[]>([])
 
   useEffect(() => {
-    // Open curtain after mount
     const t = setTimeout(() => setCurtainOpen(true), 600)
 
-    // Observe scroll sections
-    const observer = new IntersectionObserver(
+    // Observe scroll sections for fade-in
+    const sectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
-          }
+          if (entry.isIntersecting) entry.target.classList.add('visible')
         })
       },
       { threshold: 0.15 },
     )
+    sectionsRef.current.forEach((el) => { if (el) sectionObserver.observe(el) })
 
-    sectionsRef.current.forEach((el) => {
-      if (el) observer.observe(el)
-    })
+    // Observe venture panels — when one fills the viewport, highlight it
+    const ventureObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const idx = Number(entry.target.getAttribute('data-idx'))
+          if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
+            setActiveVenture(idx)
+          }
+        })
+      },
+      { threshold: [0.6] },
+    )
+    ventureRefs.current.forEach((el) => { if (el) ventureObserver.observe(el) })
 
     return () => {
       clearTimeout(t)
-      observer.disconnect()
+      sectionObserver.disconnect()
+      ventureObserver.disconnect()
     }
   }, [])
 
   const addRef = (i: number) => (el: HTMLDivElement | null) => {
     sectionsRef.current[i] = el
+  }
+
+  const addVentureRef = (i: number) => (el: HTMLElement | null) => {
+    ventureRefs.current[i] = el
   }
 
   return (
@@ -82,48 +112,34 @@ function App() {
             </p>
           </div>
 
-          {/* Ventures List */}
-          <div className="ventures anim-fade delay-5" id="work">
-            <a
-              href="https://reputationbuilt.vercel.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="venture"
-            >
-              <span className="venture-num">01</span>
-              <span className="venture-name">Reputation Built</span>
-              <span className="venture-desc">
-                Websites &amp; AI for local businesses — plumbers, roofers, landscapers, and every trade doing great work
-              </span>
-            </a>
-
-            <a
-              href="https://steadyhandpractice.vercel.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="venture"
-            >
-              <span className="venture-num">02</span>
-              <span className="venture-name">Steady Hand Practice</span>
-              <span className="venture-desc">
-                Websites &amp; AI for healthcare — physicians, dentists, PTs, and every practice that earns patient trust
-              </span>
-            </a>
-
-            <a
-              href="https://github.com/Jbapckfan/tars"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="venture"
-            >
-              <span className="venture-num">03</span>
-              <span className="venture-name">TARS</span>
-              <span className="venture-desc">
-                Autonomous AI agent gateway — orchestrates tasks, generates content, and runs businesses while I sleep
-              </span>
-            </a>
+          <div className="anim-fade delay-5">
+            <p className="scroll-hint">Scroll to explore</p>
           </div>
         </div>
+      </div>
+
+      {/* Venture Panels — each is near-full-viewport */}
+      <div id="work">
+        {VENTURES.map((v, i) => (
+          <a
+            key={v.num}
+            href={v.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`venture-panel ${activeVenture === i ? 'active' : ''}`}
+            ref={addVentureRef(i)}
+            data-idx={i}
+          >
+            <div className="venture-panel-inner">
+              <span className="venture-num">{v.num}</span>
+              <h2 className="venture-name">{v.name}</h2>
+              <p className="venture-desc">{v.desc}</p>
+              <span className="venture-cta">
+                View site <ArrowUpRight size={16} />
+              </span>
+            </div>
+          </a>
+        ))}
       </div>
 
       {/* About */}

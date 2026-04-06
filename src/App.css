@@ -216,68 +216,132 @@
   padding-left: 0.1em;
 }
 
-/* ── Ventures (the two brands) ───────────── */
+/* ── Scroll Hint ─────────────────────────── */
 
-.ventures {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+.scroll-hint {
+  font-family: var(--font-display);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--mid);
   margin-top: clamp(2rem, 5vh, 4rem);
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  animation: pulseOpacity 2s ease-in-out infinite;
 }
 
-.venture {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: baseline;
-  gap: clamp(16px, 3vw, 48px);
-  padding: clamp(20px, 3vh, 36px) 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+@keyframes pulseOpacity {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+/* ── Venture Panels (full-viewport each) ── */
+
+.venture-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: clamp(80px, 10vh, 160px) clamp(24px, 5vw, 60px);
   text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  color: var(--black);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  transition: background 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
   position: relative;
 }
 
-.venture:hover {
-  padding-left: 16px;
+.venture-panel:nth-child(odd) {
+  background: var(--white);
 }
 
-.venture:hover .venture-name {
+.venture-panel:nth-child(even) {
+  background: #eaeaea;
+}
+
+.venture-panel:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.venture-panel:hover .venture-name {
+  -webkit-text-stroke-color: var(--white);
+  color: var(--white);
+}
+
+.venture-panel:hover .venture-num,
+.venture-panel:hover .venture-desc,
+.venture-panel:hover .venture-cta {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.venture-panel:hover .venture-cta {
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.venture-panel.active .venture-name {
   color: var(--black);
-  -webkit-text-stroke-color: var(--black);
+}
+
+.venture-panel-inner {
+  max-width: 900px;
+  width: 100%;
+  text-align: left;
 }
 
 .venture-num {
   font-family: var(--font-display);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   color: var(--mid);
-  letter-spacing: 0.1em;
-  min-width: 24px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: clamp(16px, 3vh, 32px);
+  transition: color 0.5s;
 }
 
 .venture-name {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 4vw, 3.5rem);
+  font-size: clamp(2.5rem, 8vw, 7rem);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: -0.02em;
-  line-height: 1;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
   color: transparent;
-  -webkit-text-stroke: clamp(0.5px, 0.1vw, 1.5px) var(--black);
-  transition: color 0.4s, -webkit-text-stroke-color 0.4s;
-}
-
-.venture:hover .venture-name {
-  color: var(--black);
+  -webkit-text-stroke: clamp(1px, 0.15vw, 2px) var(--black);
+  margin-bottom: clamp(16px, 3vh, 32px);
+  transition: color 0.5s, -webkit-text-stroke-color 0.5s;
 }
 
 .venture-desc {
-  font-size: clamp(11px, 1.1vw, 14px);
-  color: var(--mid);
-  text-align: right;
-  max-width: 280px;
-  line-height: 1.4;
+  font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+  color: var(--dim);
+  max-width: 500px;
+  line-height: 1.6;
+  margin-bottom: clamp(20px, 3vh, 36px);
+  transition: color 0.5s;
+}
+
+.venture-cta {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--dim);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0;
+  transition: all 0.5s;
+}
+
+.venture-panel:hover .venture-cta:hover {
+  background: var(--white);
+  color: var(--black);
 }
 
 /* ── Scroll Sections ─────────────────────── */
@@ -458,13 +522,17 @@
     transform: rotateY(-1deg) translateZ(10px);
   }
 
-  .venture {
-    grid-template-columns: auto 1fr;
-    gap: 12px;
+  .venture-panel {
+    min-height: 80vh;
+    padding: 80px 24px;
   }
 
-  .venture-desc {
-    display: none;
+  .venture-name {
+    -webkit-text-stroke: 1px var(--black);
+  }
+
+  .venture-panel:hover .venture-name {
+    -webkit-text-stroke-color: var(--white);
   }
 
   .what-grid {
