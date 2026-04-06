@@ -130,11 +130,11 @@ function App() {
       <div className="scroll-section" ref={addRef(0)} id="about">
         <h2>About</h2>
         <p>
-          I'm an emergency physician in Kansas City. Fifteen-hour shifts,
-          life-or-death decisions, and a deep understanding of what it means
-          to do work that matters. I've spent years on the other side too —
-          building AI systems that run autonomously, generate leads, answer
-          phones, and handle the work that keeps small businesses up at night.
+          I'm an emergency physician in Kansas City. ER medicine trains you
+          to read a room in seconds, make decisive calls under pressure, and
+          build trust with someone you just met. Those same instincts drive
+          everything I build — first impressions matter, speed matters, and
+          every detail either earns confidence or loses it.
         </p>
         <p>
           Most web agencies don't know the difference between a P-trap and a
@@ -151,8 +151,8 @@ function App() {
           <div className="what-item">
             <h3>Emergency Medicine</h3>
             <p>
-              15-hour shifts and a deep understanding of what healthcare
-              providers actually need from their online presence.
+              Rapid decision-making, pattern recognition, and the ability to
+              earn trust in seconds — applied to every project I touch.
             </p>
           </div>
           <div className="what-item">
