@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
+
 *,
 *::before,
 *::after {
@@ -7,31 +9,29 @@
 }
 
 :root {
-  --black: #0A0A0B;
-  --white: #FAFAFA;
-  --gray: #374151;
-  --slate: #475569;
-  --blue: #2563EB;
-  --card: #F3F4F6;
-  --border: #E5E7EB;
-  --forest: #1B4332;
-  --navy: #1E3A5F;
-
-  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --black: #0a0a0a;
+  --white: #f2f2f2;
+  --mid: #888;
+  --dim: #555;
+  --accent: #2563EB;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 html {
-  scroll-behavior: smooth;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "liga", "kern";
 }
 
 body {
-  font-family: var(--sans);
-  color: var(--gray);
+  font-family: var(--font-body);
+  color: var(--black);
   background: var(--white);
-  line-height: 1.6;
+  line-height: 1.5;
+  overflow-x: hidden;
 }
 
 a {
@@ -39,7 +39,7 @@ a {
   text-decoration: none;
 }
 
-img {
-  max-width: 100%;
-  display: block;
+::selection {
+  background: var(--black);
+  color: var(--white);
 }
