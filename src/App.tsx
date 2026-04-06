@@ -118,6 +118,14 @@ function App() {
         </div>
       </div>
 
+      <div className="proof-strip" aria-label="Founder proof">
+        <div className="proof-strip__inner">
+          <span>Emergency Physician — Kansas City, MO</span>
+          <span>2 brands — Reputation Built + Steady Hand Practice</span>
+          <span>AI-powered websites for businesses that earn their customers</span>
+        </div>
+      </div>
+
       {/* Venture Panels — each is near-full-viewport */}
       <div id="work">
         {VENTURES.map((v, i) => (
