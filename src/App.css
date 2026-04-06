@@ -1,0 +1,358 @@
+/* ----------------------------------------
+   Layout
+   ---------------------------------------- */
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.container-narrow {
+  max-width: 720px;
+}
+
+.section {
+  padding: 96px 0;
+}
+
+.section-light {
+  background: var(--card);
+}
+
+.section-dark {
+  background: var(--black);
+}
+
+.section-heading {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 48px;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.section-heading-light {
+  color: var(--white);
+}
+
+/* ----------------------------------------
+   Fade-in on scroll
+   ---------------------------------------- */
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.visible .fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ----------------------------------------
+   Hero
+   ---------------------------------------- */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+}
+
+.hero-content {
+  max-width: 640px;
+  text-align: center;
+}
+
+.hero-name {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--black);
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+  line-height: 1.1;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--slate);
+  margin-bottom: 32px;
+  letter-spacing: -0.01em;
+}
+
+.hero-bio {
+  font-size: 1.125rem;
+  color: var(--gray);
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.cta-primary {
+  background: var(--blue);
+  color: #fff;
+}
+
+.cta-primary:hover {
+  background: #1d4ed8;
+}
+
+.cta-secondary {
+  background: var(--black);
+  color: #fff;
+}
+
+.cta-secondary:hover {
+  background: #1f2937;
+}
+
+/* ----------------------------------------
+   What I Do — Columns
+   ---------------------------------------- */
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  text-align: left;
+}
+
+.column-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: var(--card);
+  margin-bottom: 16px;
+  color: var(--blue);
+}
+
+.column h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 8px;
+}
+
+.column p {
+  font-size: 0.9375rem;
+  color: var(--gray);
+  line-height: 1.65;
+}
+
+/* ----------------------------------------
+   Brand Cards
+   ---------------------------------------- */
+
+.brand-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.brand-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  text-align: left;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  display: block;
+}
+
+.brand-card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.brand-accent {
+  height: 6px;
+}
+
+.brand-body {
+  padding: 32px;
+}
+
+.brand-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 4px;
+}
+
+.brand-tagline {
+  font-size: 0.875rem;
+  color: var(--slate);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.brand-desc {
+  font-size: 0.9375rem;
+  color: var(--gray);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--blue);
+  transition: gap 0.2s ease;
+}
+
+.brand-card:hover .brand-link {
+  gap: 8px;
+}
+
+/* ----------------------------------------
+   How I'm Different
+   ---------------------------------------- */
+
+.different-text {
+  font-size: 1.125rem;
+  color: var(--gray);
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* ----------------------------------------
+   Contact
+   ---------------------------------------- */
+
+.contact {
+  text-align: center;
+}
+
+.contact-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.125rem;
+  color: var(--white);
+  margin-bottom: 24px;
+  transition: color 0.2s ease;
+}
+
+.contact-email:hover {
+  color: var(--blue);
+}
+
+.contact-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.contact-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.2s ease;
+}
+
+.contact-links a:hover {
+  color: var(--white);
+}
+
+.contact-divider {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* ----------------------------------------
+   Footer
+   ---------------------------------------- */
+
+.footer {
+  padding: 32px 24px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.footer p {
+  font-size: 0.8125rem;
+  color: var(--slate);
+}
+
+/* ----------------------------------------
+   Responsive
+   ---------------------------------------- */
+
+@media (max-width: 768px) {
+  .hero-name {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.0625rem;
+  }
+
+  .hero-bio {
+    font-size: 1rem;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta {
+    width: 100%;
+    max-width: 360px;
+    justify-content: center;
+  }
+
+  .section {
+    padding: 64px 0;
+  }
+
+  .section-heading {
+    font-size: 1.625rem;
+    margin-bottom: 32px;
+  }
+
+  .columns {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .brand-cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .different-text {
+    font-size: 1rem;
+    text-align: left;
+  }
+}
