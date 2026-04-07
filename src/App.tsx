@@ -70,6 +70,9 @@ function App() {
     <>
       {/* Loading Curtain */}
       <div className={`curtain ${curtainOpen ? 'open' : ''}`}>
+        <div className="curtain-panel curtain-panel--left" />
+        <div className="curtain-panel curtain-panel--right" />
+        <div className="curtain-seam" />
         <span className="curtain-text">JA</span>
       </div>
 
@@ -98,6 +101,14 @@ function App() {
 
       {/* Hero — 3D Stage */}
       <div className="stage" id="top">
+        <div className="stage-planes" aria-hidden="true">
+          <div className="stage-plane stage-plane--forest">
+            <span>REPUTATION BUILT • REPUTATION BUILT • REPUTATION BUILT • REPUTATION BUILT •</span>
+          </div>
+          <div className="stage-plane stage-plane--navy">
+            <span>STEADY HAND PRACTICE • STEADY HAND PRACTICE • STEADY HAND PRACTICE •</span>
+          </div>
+        </div>
         <div className="stage-content">
           <h1 className="anim-slide">
             <span className="hero-name delay-1">James</span>
@@ -119,15 +130,46 @@ function App() {
       </div>
 
       <div className="proof-strip" aria-label="Founder proof">
-        <div className="proof-strip__inner">
-          <span>Emergency Physician — Kansas City, MO</span>
-          <span>2 brands — Reputation Built + Steady Hand Practice</span>
-          <span>AI-powered websites for businesses that earn their customers</span>
+        <div className="proof-strip__marquee">
+          <div className="proof-strip__track">
+            {Array.from({ length: 2 }).map((_, row) => (
+              <div className="proof-strip__line" key={row}>
+                {[
+                  'ER PHYSICIAN',
+                  'AI BUILDER',
+                  'KANSAS CITY',
+                  '2 INDUSTRY BRANDS',
+                ].map((item, index) => (
+                  <span
+                    key={`${row}-${item}-${index}`}
+                    className={`proof-strip__item ${index % 2 === 1 ? 'proof-strip__item--outline' : ''}`}
+                  >
+                    {item}
+                    <b>•</b>
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Venture Panels — each is near-full-viewport */}
       <div id="work">
+        <aside className="venture-rail" aria-label="Project navigation">
+          {VENTURES.map((venture, i) => (
+            <a
+              key={venture.num}
+              href={venture.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`venture-rail__item ${activeVenture === i ? 'venture-rail__item--active' : ''}`}
+            >
+              <span className="venture-rail__num">{venture.num}</span>
+              <span className="venture-rail__label">{venture.name.toUpperCase()}</span>
+            </a>
+          ))}
+        </aside>
         {VENTURES.map((v, i) => (
           <a
             key={v.num}
@@ -153,23 +195,41 @@ function App() {
       {/* About */}
       <div className="scroll-section" ref={addRef(0)} id="about">
         <h2>About</h2>
+        <div className="about-editorial">
+          <div className="quote-block">
+            <span className="quote-kicker">Operating principle</span>
+            <p>I don't sell websites. I build revenue machines.</p>
+          </div>
+
+          <div className="about-sidebar">
+            <div className="about-stat">
+              <span className="about-stat__value">ER Physician</span>
+              <span className="about-stat__label">Decisions, triage, trust under pressure.</span>
+            </div>
+            <div className="about-stat">
+              <span className="about-stat__value">Kansas City</span>
+              <span className="about-stat__label">Building for local businesses and regional practices.</span>
+            </div>
+            <div className="about-stat">
+              <span className="about-stat__value">2 Vertical Brands</span>
+              <span className="about-stat__label">Reputation Built for trades. Steady Hand for healthcare.</span>
+            </div>
+          </div>
+        </div>
+
         <p>
           I'm an emergency physician in Kansas City. ER medicine trains you
           to read a room in seconds, make decisive calls under pressure, and
           build trust with someone you just met. Those same instincts drive
-          everything I build — first impressions matter, speed matters, and
+          everything I build. First impressions matter, speed matters, and
           every detail either earns confidence or loses it.
         </p>
         <p>
           Most web agencies don't know the difference between a P-trap and a
-          prior auth. I do. That combination — medicine, AI, design — means
+          prior auth. I do. That combination of medicine, AI, and design means
           I understand your business from the inside, whether you're a plumber
           answering calls at midnight or a dentist trying to fill your schedule.
         </p>
-
-        <div className="quote-block">
-          <p>I don't sell websites. I build revenue machines.</p>
-        </div>
 
         <div className="what-grid">
           <div className="what-item">
@@ -200,7 +260,9 @@ function App() {
       <div className="contact-section" id="contact">
         <h2>Let's work together</h2>
         <a href="mailto:james@reputationbuilt.com" className="contact-email">
-          james@reputationbuilt.com
+          <span>james@</span>
+          <span>reputation</span>
+          <span>built.com</span>
         </a>
         <div className="contact-links">
           <a
